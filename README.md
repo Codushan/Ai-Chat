@@ -1,127 +1,70 @@
-🚀 Modern AI Chat Interface
+# 🚀 Modern AI Chat Interface
+
 This is a sleek and responsive AI chat application built with React and Next.js, featuring both standard and real-time streaming chat functionalities. The application demonstrates dynamic inline styling to adapt its layout based on screen size, providing an optimal user experience across various devices.
 
-✨ Features
-Standard Chat: Send a message and receive a complete response once the AI has finished processing.
+---
 
-Streaming Chat: Experience real-time AI responses, with text appearing word by word as it's generated.
+## ✨ Features
 
-Modern UI: A clean, intuitive, and beautifully designed user interface using only inline styles.
+* **Standard Chat**: Send a message and receive a complete response once the AI has finished processing.
 
-Responsive Design: The layout dynamically adjusts for optimal viewing on mobile, tablet, and desktop screens.
+* **Streaming Chat**: Experience real-time AI responses, with text appearing word by word as it's generated.
 
-🛠️ Technology Stack
-Frontend: React, Next.js
+* **Modern UI**: A clean, intuitive, and beautifully designed user interface using only inline styles.
 
-Styling: Pure Inline CSS (no external CSS files or frameworks)
+* **Responsive Design**: The layout dynamically adjusts for optimal viewing on mobile, tablet, and desktop screens.
 
-API Integration: JavaScript Fetch API
+---
 
-🚀 Getting Started
+## 🛠️ Technology Stack
+
+* **Frontend**: React, Next.js
+
+* **Styling**: Pure Inline CSS (no external CSS files or frameworks)
+
+* **API Integration**: JavaScript Fetch API
+
+---
+
+## 🚀 Getting Started
+
 Follow these steps to set up and run the project locally.
 
-Prerequisites
-Node.js (v18 or higher recommended)
+### Prerequisites
 
-npm or Yarn
+* Node.js (v18 or higher recommended)
 
-Installation
-Clone the repository:
+* npm or Yarn
 
-git clone https://your-repo-link.git
-cd your-repo-name
+### Installation
 
-Install dependencies:
+1.  **Clone the repository**:
 
-npm install
-# or
-yarn install
+    ```bash
+    git clone [https://your-repo-link.git](https://your-repo-link.git)
+    cd your-repo-name
+    ```
 
-Set up API endpoints:
-This application expects two API endpoints: /api/chat for standard (non-streaming) responses and /api/chat-stream for streaming responses. You'll need to implement these endpoints on your backend (e.g., using Next.js API routes or a separate server) to connect to your AI model (e.g., Google Gemini API).
+2.  **Install dependencies**:
 
-For /api/chat, the endpoint should return a JSON object like { response: "AI's full answer" }.
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-For /api/chat-stream, the endpoint should stream plain text chunks.
+3.  **Set up API endpoints**:
+    This application expects two API endpoints: `/api/chat` for standard (non-streaming) responses and `/api/chat-stream` for streaming responses. You'll need to implement these endpoints on your backend (e.g., using Next.js API routes or a separate server) to connect to your AI model (e.g., Google Gemini API).
 
-Running the Application
+    * For `/api/chat`, the endpoint should return a JSON object like `{ response: "AI's full answer" }`.
+
+    * For `/api/chat-stream`, the endpoint should stream plain text chunks.
+
+### Running the Application
+
 To start the development server:
 
+```bash
 npm run dev
 # or
 yarn dev
-
-Open your browser and navigate to http://localhost:3000.
-
-💡 Responsive Design Explained (The windowWidth Logic)
-The selected code snippet is crucial for making this application responsive without relying on external CSS or CSS-in-JS libraries.
-
-  const [windowWidth, setWindowWidth] = useState(0); // State to store window width
-
-  // Effect to handle window width for responsive styling
-  useEffect(() => {
-    // Set initial width
-    setWindowWidth(window.innerWidth);
-
-    // Handler to update width on resize
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []); // Empty dependency array means this runs once on mount and cleans up on unmount
-
-Here's how this code enables dynamic, responsive styling:
-
-windowWidth State: A useState hook, [windowWidth, setWindowWidth], is initialized to 0. This state variable will store the current width of the browser window.
-
-useEffect for Event Listener:
-
-The useEffect hook runs once when the component mounts (due to the empty dependency array []).
-
-Initial Width: setWindowWidth(window.innerWidth); immediately sets the windowWidth state to the current width of the browser window when the component first loads.
-
-Resize Handler: handleResize is a function that simply updates the windowWidth state whenever the browser window is resized.
-
-Event Listener: window.addEventListener('resize', handleResize); attaches this handleResize function as an event listener to the browser's resize event. This means handleResize will be called every time the user resizes their browser window.
-
-Cleanup: The return function within useEffect is a cleanup function. window.removeEventListener('resize', handleResize); ensures that the event listener is removed when the component unmounts. This prevents memory leaks and ensures that the listener doesn't try to update state on a component that no longer exists.
-
-How it drives responsiveness
-Further down in the return statement (JSX), this windowWidth state is used in conditional inline styles. For example:
-
-<div style={{
-  display: 'flex',
-  flexDirection: windowWidth >= SIDE_BY_SIDE_BREAKPOINT ? 'row' : 'column', // Dynamic direction
-  gap: '16px',
-  // ...other styles
-}}>
-  {/* Buttons or Response Displays */}
-</div>
-
-Here, SIDE_BY_SIDE_BREAKPOINT is a constant (e.g., 768px). If windowWidth is greater than or equal to this breakpoint, the flexDirection will be 'row' (side-by-side). Otherwise, it will be 'column' (stacked). This allows the layout to adapt in real-time as the user resizes their window, without needing any external CSS media queries.
-
-💬 Usage
-Type your message into the text area.
-
-Click "Standard Chat" to send your message and wait for the complete response.
-
-Click "Stream Chat" to send your message and see the AI's response appear in real-time.
-
-Observe how the layout of the buttons and response boxes adjusts as you resize your browser window.
-
-🌟 Future Enhancements
-Error Handling UI: More sophisticated user-facing error messages.
-
-Conversation History: Store and display previous chat messages.
-
-Input Clearing: Option to automatically clear the input field after sending a message.
-
-Theming: Allow users to switch between light and dark modes.
-
-Markdown Rendering: Render streamed responses with proper Markdown formatting.
