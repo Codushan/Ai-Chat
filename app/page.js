@@ -73,7 +73,7 @@ export default function Home() {
     } catch (error) {
       setStreamResponse("Error: " + error.message)
     }
-    setLoading(false);
+    setStreaming(false);
   }
 
   
@@ -94,7 +94,6 @@ export default function Home() {
   const chatButtonStyle = {
     ...commonButtonStyle,
     backgroundColor: '#6b46c1',
-    marginRight: '16px',
     opacity: loading ? 0.7 : 1,
   };
 
@@ -197,7 +196,7 @@ export default function Home() {
             onClick={handleStreamChat}
             disabled={loading}
           >
-            {loading ? "Streaming..." : "Stream Chat"}
+            {streaming  ? "Streaming..." : "Stream Chat"}
           </button>
         </div>
 
@@ -232,7 +231,7 @@ export default function Home() {
             }}>
               Streamed Response:
             </h2>
-            {streamResponse || (loading && "Awaiting streamed response...") || "No streamed response yet."}
+            {streamResponse || (streaming && "Awaiting streamed response...") || "No streamed response yet."}
           </div>
         </div>
       </div>
