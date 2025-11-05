@@ -41,7 +41,7 @@ Follow these steps to set up and run the project locally.
 1.  **Clone the repository**:
 
     ```bash
-    git clone [https://your-repo-link.git](https://your-repo-link.git)
+    git clone (https://github.com/Codushan/Ai-Chat)
     cd your-repo-name
     ```
 
